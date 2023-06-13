@@ -15,10 +15,10 @@ public class StorageService {
     private final StorageRepo storageRepo;
 
     public List<Storage> getStorages() {
-        return storageRepo.getStorages();
+        return storageRepo.findAll();
     }
 
     public Storage addStorage(Storage storage) {
-        return storageRepo.addTask(storage);
+        return storageRepo.save(storage);
     }
 }
