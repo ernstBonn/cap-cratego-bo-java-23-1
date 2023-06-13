@@ -21,10 +21,4 @@ public class StorageRepo {
         storageMap.put(storage.getId(), storage);
         return storage;
     }
-
-//    public Storage addTask(Task task) {
-//        taskMap.put(task.getId(), task);
-//        return task;
-//    }
-
 }
