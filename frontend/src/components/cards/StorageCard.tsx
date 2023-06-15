@@ -5,10 +5,12 @@ type Props = {
 }
 function StorageCard(props: Props) {
     return (
-        <div>
-            <h1>{props.storage.description}</h1>
-            <p>{props.storage.crts_now} / {props.storage.crts_org}</p>
-        </div>
+                <article>
+                    <img src="https://picsum.photos/200/300"/>
+                    <h3>{props.storage.description}</h3>
+                    <p><em>{props.storage.crts_now}</em> / <em>{props.storage.crts_org}</em></p>
+                    <a href="#">Details</a>
+                </article>
     );
 }
 

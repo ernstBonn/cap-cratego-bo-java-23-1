@@ -17,5 +17,6 @@ public class Storage {
     private String description;
     private int crts_org;
     private int crts_now;
+    private byte[] image;
 
 }
