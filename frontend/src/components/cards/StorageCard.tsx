@@ -4,9 +4,14 @@ type Props = {
     storage: StorageModel
 }
 function StorageCard(props: Props) {
+
+    const { storage } = props;
+
+    const imageDataUrl = `data:image/jpeg;base64,${storage.image}`;
+
     return (
                 <article>
-                    <img src="https://picsum.photos/200/300"/>
+                    <img src={imageDataUrl} alt="Storage Image" />
                     <h3>{props.storage.description}</h3>
                     <p><em>{props.storage.crts_now}</em> / <em>{props.storage.crts_org}</em></p>
                     <a href="#">Details</a>
