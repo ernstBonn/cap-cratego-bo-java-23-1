@@ -22,19 +22,19 @@ public class StorageController {
             return storageService.getStorages();
         }
 
-    @PostMapping("storage/new")
-        public Storage addStorage(@RequestBody Storage storage){
-            return storageService.addStorage(storage);
-    }
+//    @PostMapping("storage/new")
+//        public Storage addStorage(@RequestBody Storage storage){
+//            return storageService.addStorage(storage);
+//    }
 
-    @PostMapping("image")
-    public ResponseEntity<Storage> createStorage(@RequestParam String id,
+    @PostMapping("storage")
+    public ResponseEntity<Storage> addStorage(@RequestParam String id,
                                             @RequestParam String description,
                                             @RequestParam int crts_org,
                                             @RequestParam int crts_now,
                                             @RequestParam("image") MultipartFile file) {
         try {
-            Storage createdStorage = storageService.createStorage(id,description, crts_org, crts_now, file);
+            Storage createdStorage = storageService.addStorage(id,description, crts_org, crts_now, file);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdStorage);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
