@@ -10,12 +10,14 @@ function StorageCard(props: Props) {
     const imageDataUrl = `data:image/jpeg;base64,${storage.image}`;
 
     return (
-                <article>
-                    <img src={imageDataUrl} alt="Storage Image" />
-                    <h3>{props.storage.description}</h3>
-                    <p><em>{props.storage.crts_now}</em> / <em>{props.storage.crts_org}</em></p>
-                    <a href="#">Details</a>
-                </article>
+                <div className="card">
+                    <div className="image">
+                        <img src={imageDataUrl} alt="Storage Image" />
+                    </div>
+                    <div className="description">{props.storage.description}</div>
+                    <div className="crts_now">{props.storage.crts_now} / {props.storage.crts_org} crts</div>
+                    <button className="details-button">Details</button>
+                </div>
     );
 }
 
