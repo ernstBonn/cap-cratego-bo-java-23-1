@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.io.InputStream;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -21,9 +22,6 @@ class StorageControllerTest {
 
     @Autowired
     MockMvc mockMvc;
-
-    @MockBean
-    private StorageService storageService;
 
     @Test
     @DirtiesContext
@@ -34,6 +32,7 @@ class StorageControllerTest {
     }
 
     @Test
+    @DirtiesContext
     public void testAddStorage() throws Exception {
 
         InputStream imageStream = getClass().getResourceAsStream("/images/crateGo_logo.png");
@@ -56,7 +55,6 @@ class StorageControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn();
 
-        // Assert the request and request parameters
         Assertions.assertEquals(id, result.getRequest().getParameter("id"));
         Assertions.assertEquals(description, result.getRequest().getParameter("description"));
         Assertions.assertEquals(String.valueOf(crtsOrg), result.getRequest().getParameter("crts_org"));

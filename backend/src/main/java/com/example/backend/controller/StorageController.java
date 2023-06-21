@@ -1,5 +1,4 @@
 package com.example.backend.controller;
-
 import com.example.backend.model.Storage;
 import com.example.backend.service.StorageService;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +20,6 @@ public class StorageController {
         public List<Storage> getStorages(){
             return storageService.getStorages();
         }
-
-//    @PostMapping("storage/new")
-//        public Storage addStorage(@RequestBody Storage storage){
-//            return storageService.addStorage(storage);
-//    }
 
     @PostMapping("storage")
     public ResponseEntity<Storage> addStorage(@RequestParam String id,
