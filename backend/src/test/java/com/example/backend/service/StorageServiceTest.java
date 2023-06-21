@@ -33,7 +33,7 @@ class StorageServiceTest {
     }
 
     @Test
-    public void testAddStorage() throws IOException, URISyntaxException {
+    void testAddStorage() throws IOException, URISyntaxException {
         //GIVEN
         String id = "your-id";
         String description = "your-description";

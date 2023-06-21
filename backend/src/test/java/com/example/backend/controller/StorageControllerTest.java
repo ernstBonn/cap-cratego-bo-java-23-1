@@ -33,7 +33,7 @@ class StorageControllerTest {
 
     @Test
     @DirtiesContext
-    public void testAddStorage() throws Exception {
+    void testAddStorage() throws Exception {
 
         InputStream imageStream = getClass().getResourceAsStream("/images/crateGo_logo.png");
         String imageName = "crateGo_logo.png";
