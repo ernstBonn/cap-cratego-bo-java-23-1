@@ -21,5 +21,4 @@ public class User {
     private String password;
     @DBRef
     private List<Storage> storages;
-
 }

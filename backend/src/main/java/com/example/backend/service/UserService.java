@@ -12,10 +12,9 @@ public class UserService {
     private final UserRepo userRepo;
     private final SetUUID setUUID;
 
-
     public User addUser(User user) {
         user.setId(setUUID.setUUID());
-        userRepo.save(user);
+        userRepo.insert(user);
         return user;
     }
 }
