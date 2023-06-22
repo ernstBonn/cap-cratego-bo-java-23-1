@@ -18,5 +18,4 @@ public class Storage {
     private int crts_org;
     private int crts_now;
     private byte[] image;
-
 }
