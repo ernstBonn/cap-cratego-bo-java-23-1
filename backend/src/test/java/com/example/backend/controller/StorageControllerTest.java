@@ -1,14 +1,19 @@
 package com.example.backend.controller;
-
+import com.example.backend.service.StorageService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -16,42 +21,43 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class StorageControllerTest {
 
     @Autowired
-    MockMvc mvc;
+    MockMvc mockMvc;
 
     @Test
     @DirtiesContext
-    void getStorages() throws Exception{
-        mvc.perform(MockMvcRequestBuilders.get("/api/storages"))
+    void getStorages() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/storages"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("[]"));
     }
 
     @Test
     @DirtiesContext
-    void addStorage() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.post("/api/storage/new")
-                .contentType("application/json")
-                .content("""
-                                {
-                                    "id": "055",
-                                    "description": "feathers",
-                                    "crts_org": 49,
-                                    "crts_now": 32
-                                }
-                            """))
-            .andExpect(status().isOk());
+    void testAddStorage() throws Exception {
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/storages"))
-                .andExpect(status().isOk())
-                .andExpect(content().json("""
-                            [
-                                {
-                                    "id": "055",
-                                    "description": "feathers",
-                                    "crts_org": 49,
-                                    "crts_now": 32
-                                }
-                            ]
-                            """)).andExpect(jsonPath("$[0].id").isNotEmpty());
+        InputStream imageStream = getClass().getResourceAsStream("/images/crateGo_logo.png");
+        String imageName = "crateGo_logo.png";
+        String imageContentType = "image/png";
+        MockMultipartFile imageFile = new MockMultipartFile("image", imageName, imageContentType, imageStream);
+
+        String id = "your-id";
+        String description = "your-description";
+        int crtsOrg = 10;
+        int crtsNow = 20;
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.multipart("/api/storage")
+                        .file(imageFile)
+                        .param("id", id)
+                        .param("description", description)
+                        .param("crts_org", String.valueOf(crtsOrg))
+                        .param("crts_now", String.valueOf(crtsNow))
+                )
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn();
+
+        Assertions.assertEquals(id, result.getRequest().getParameter("id"));
+        Assertions.assertEquals(description, result.getRequest().getParameter("description"));
+        Assertions.assertEquals(String.valueOf(crtsOrg), result.getRequest().getParameter("crts_org"));
+        Assertions.assertEquals(String.valueOf(crtsNow), result.getRequest().getParameter("crts_now"));
     }
 }

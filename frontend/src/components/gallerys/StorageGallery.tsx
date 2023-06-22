@@ -8,9 +8,9 @@ type Props = {
 
 function StorageGallery(props: Props) {
     return (
-        <div>
+        <>
             {props.storages.map(current => <StorageCard storage={current}/>)}
-        </div>
+        </>
     );
 }
 

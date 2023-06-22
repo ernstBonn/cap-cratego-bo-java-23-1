@@ -18,15 +18,16 @@ function App() {
 
     useEffect(getStorages, [])
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>CRATEGO</h1>
-      </header>
-        <StorageGallery storages={storages}/>
-    </div>
 
-
+    return (
+      <>
+          <div className="header">
+              <h1>CRATEGO</h1>
+          </div>
+          <div className="main">
+              <StorageGallery storages={storages}/>
+          </div>
+      </>
   );
 }
 
