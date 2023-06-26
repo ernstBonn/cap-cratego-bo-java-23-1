@@ -4,10 +4,9 @@ package com.example.backend.controller;
 import com.example.backend.model.User;
 import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/")
@@ -16,6 +15,10 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping("users")
+    public List<User> getUsers(){
+        return userService.getUsers();
+    }
 
     @PostMapping("user")
     public User addUser(@RequestBody User user) {
