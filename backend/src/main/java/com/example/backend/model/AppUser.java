@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Document("Users")
-public class User {
+public class AppUser {
 
     private String id;
     private String name;
