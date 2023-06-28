@@ -4,15 +4,16 @@ import './App.css';
 import StorageGallery from "./components/gallerys/StorageGallery";
 import axios from "axios";
 import {StorageModel} from "./components/models/StorageModel";
+import {Route, Routes} from "react-router-dom";
 
 function App() {
 
-    const[storages, setStorages] = useState<StorageModel[]>([])
+    const [storages, setStorages] = useState<StorageModel[]>([])
 
-    function getStorages(){
+    function getStorages() {
         axios.get("/api/storages")
             .then(response =>
-            setStorages(response.data)
+                setStorages(response.data)
             )
     }
 
@@ -20,15 +21,18 @@ function App() {
 
 
     return (
-      <>
-          <div className="header">
-              <h1>CRATEGO</h1>
-          </div>
-          <div className="main">
-              <StorageGallery storages={storages}/>
-          </div>
-      </>
-  );
+        <div>
+            {/*<div className="header">*/}
+            {/*    <h1>CRATEGO</h1>*/}
+            {/*</div>*/}
+            {/*<div className="main">*/}
+            {/*    <StorageGallery storages={storages}/>*/}
+            {/*</div>*/}
+            <Routes>
+                <Route path={"/api/storages"} element={<StorageGallery storages={storages}/>}/>
+            </Routes>
+        </div>
+    );
 }
 
 export default App;

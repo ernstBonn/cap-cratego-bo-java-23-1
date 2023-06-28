@@ -22,6 +22,4 @@ public class AppUser {
     private String password;
     @DBRef
     private List<Storage> storages;
-
-
 }
