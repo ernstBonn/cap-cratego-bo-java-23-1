@@ -2,8 +2,10 @@ package com.example.backend.controller;
 
 
 import com.example.backend.model.AppUser;
+import com.example.backend.model.AppUserDTO;
 import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +23,12 @@ public class UserController {
     }
 
     @PostMapping("user")
-    public AppUser addUser(@RequestBody AppUser user) {
-        return userService.addAppUser(user);
+    public String addUser(@RequestBody AppUserDTO user) {
+        return userService.addUser(user);
+    }
+
+    @PostMapping("login")
+    public String login() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
