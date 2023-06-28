@@ -5,6 +5,7 @@ import StorageGallery from "./components/gallerys/StorageGallery";
 import axios from "axios";
 import {StorageModel} from "./components/models/StorageModel";
 import {Route, Routes} from "react-router-dom";
+import RegisterPage from "./components/pages/RegisterPage";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
             {/*    <StorageGallery storages={storages}/>*/}
             {/*</div>*/}
             <Routes>
+                <Route path={"/"} element={<RegisterPage/>}/>
                 <Route path={"/api/storages"} element={<StorageGallery storages={storages}/>}/>
             </Routes>
         </div>
