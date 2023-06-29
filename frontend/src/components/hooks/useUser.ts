@@ -22,4 +22,6 @@ export default function useUser(){
             .then(() => nav("/api/storages"))
             .catch((e) => console.log(e.message))
     }
+
+    return {login, register, user}
 }

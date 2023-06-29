@@ -22,7 +22,7 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @PostMapping("user")
+    @PostMapping("register")
     public String addUser(@RequestBody AppUserDTO user) {
         return userService.addUser(user);
     }

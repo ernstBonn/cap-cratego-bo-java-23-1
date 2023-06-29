@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.ConnectionBuilder;
 import java.util.List;
 
 @Data
@@ -18,7 +17,7 @@ import java.util.List;
 public class AppUser {
 
     private String id;
-    private String name;
+    private String username;
     private String password;
     @DBRef
     private List<Storage> storages;

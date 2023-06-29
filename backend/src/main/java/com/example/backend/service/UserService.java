@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,19 +27,19 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = userRepo.findAppUserByName(username)
+        AppUser appUser = userRepo.findAppUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username:" + username + " not found"));
-        return new User(appUser.getName(), appUser.getPassword(), List.of());
+        return new User(appUser.getUsername(), appUser.getPassword(), List.of());
     }
 
     public String addUser(AppUserDTO user) {
-        if (userRepo.findAppUserByName(user.getName()).equals(user.getName())){
+        if (userRepo.findAppUserByUsername(user.getUsername()).equals(user.getUsername())){
             throw new IllegalArgumentException("Username already taken");
         }
         PasswordEncoder encoder = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
         AppUser realUser = new AppUser(
                 setUUID.setUUID(),
-                user.getName(),
+                user.getUsername(),
                 encoder.encode(user.getPassword()),
                 List.of());
         userRepo.save(realUser);

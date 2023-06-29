@@ -1,10 +1,10 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 
 type Props = {
-    register: (name: string, password: string) => Promise<void>
+    login: (username: string, password: string) => Promise<void>
 }
 
-function RegisterPage(props: Props) {
+function LoginPage(props: Props) {
 
     const [username, setName] = useState<string>("")
     const [password, setPassword] = useState<string>("")
@@ -17,15 +17,15 @@ function RegisterPage(props: Props) {
         setPassword(e.target.value)
     }
 
-    function registerOnSubmit(e: FormEvent<HTMLFormElement>){
-        e.preventDefault()
-        props.register(username, password)
+    function loginOnSubmit(e: FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        props.login(username, password)
     }
 
     return (
         <div>
-            <h1>register</h1>
-            <form onSubmit={registerOnSubmit}>
+            <h1>login</h1>
+            <form onSubmit={loginOnSubmit}>
                 <input type={"text"} onChange={onChangeHandlerName}/>
                 <input type={"password"} onChange={onChangeHandlerPassword}/>
                 <button>SUBMIT</button>
@@ -34,4 +34,4 @@ function RegisterPage(props: Props) {
     );
 }
 
-export default RegisterPage;
+export default LoginPage;

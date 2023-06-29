@@ -6,6 +6,9 @@ import axios from "axios";
 import {StorageModel} from "./components/models/StorageModel";
 import {Route, Routes} from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
+import LoginPage from "./components/pages/LoginPage";
+import loginPage from "./components/pages/LoginPage";
+import useUser from "./components/hooks/useUser";
 
 function App() {
 
@@ -20,6 +23,7 @@ function App() {
 
     useEffect(getStorages, [])
 
+    const {login, register} = useUser()
 
     return (
         <div>
@@ -30,7 +34,8 @@ function App() {
             {/*    <StorageGallery storages={storages}/>*/}
             {/*</div>*/}
             <Routes>
-                <Route path={"/"} element={<RegisterPage/>}/>
+                <Route path={"/"} element={<RegisterPage register={register}/>}/>
+                <Route path={"/login"} element={<LoginPage login={login}/>}/>
                 <Route path={"/api/storages"} element={<StorageGallery storages={storages}/>}/>
             </Routes>
         </div>
