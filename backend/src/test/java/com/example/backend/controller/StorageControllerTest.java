@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -14,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.io.InputStream;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
@@ -25,6 +27,7 @@ class StorageControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser(username = "user", password = "123")
     void getStorages() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/storages"))
                 .andExpect(status().isOk())
@@ -33,6 +36,7 @@ class StorageControllerTest {
 
     @Test
     @DirtiesContext
+    @WithMockUser(username = "user", password = "123")
     void testAddStorage() throws Exception {
 
         InputStream imageStream = getClass().getResourceAsStream("/images/crateGo_logo.png");
@@ -40,10 +44,10 @@ class StorageControllerTest {
         String imageContentType = "image/png";
         MockMultipartFile imageFile = new MockMultipartFile("image", imageName, imageContentType, imageStream);
 
-        String id = "your-id";
-        String description = "your-description";
-        int crtsOrg = 10;
-        int crtsNow = 20;
+        String id = "storageId";
+        String description = "storageDescription";
+        int crtsOrg = 20;
+        int crtsNow = 10;
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.multipart("/api/storage")
                         .file(imageFile)
@@ -51,6 +55,7 @@ class StorageControllerTest {
                         .param("description", description)
                         .param("crts_org", String.valueOf(crtsOrg))
                         .param("crts_now", String.valueOf(crtsNow))
+                        .with(csrf())
                 )
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn();

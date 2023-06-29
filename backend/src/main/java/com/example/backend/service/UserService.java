@@ -21,10 +21,6 @@ public class UserService implements UserDetailsService {
     private final UserRepo userRepo;
     private final SetUUID setUUID;
 
-    public List<AppUser> getUsers() {
-        return userRepo.findAll();
-    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = userRepo.findAppUserByUsername(username)
