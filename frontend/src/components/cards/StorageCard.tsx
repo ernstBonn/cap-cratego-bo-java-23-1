@@ -5,8 +5,6 @@ type Props = {
 }
 function StorageCard(props: Props) {
 
-    const { storage } = props;
-
     return (
                 <div className="card">
                     <div className="description">{props.storage.description}</div>

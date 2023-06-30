@@ -1,25 +1,14 @@
 package com.example.backend.service;
 
 import com.example.backend.model.AppUser;
-import com.example.backend.model.AppUserDTO;
-import com.example.backend.model.Storage;
 import com.example.backend.repo.UserRepo;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-
-import static de.flapdoodle.embed.mongo.packageresolver.PlatformMatch.any;
-import static org.bouncycastle.math.ec.rfc8032.Ed448.verify;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
