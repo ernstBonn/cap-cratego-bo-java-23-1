@@ -2,10 +2,7 @@ package com.example.backend.controller;
 import com.example.backend.model.Storage;
 import com.example.backend.service.StorageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
