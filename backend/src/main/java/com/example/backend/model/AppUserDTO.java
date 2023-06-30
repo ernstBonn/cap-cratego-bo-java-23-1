@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,6 +14,8 @@ import lombok.NoArgsConstructor;
 
 public class AppUserDTO {
 
+    private String id;
     private String username;
-    private String password;
+//    private String password;
+private List<String> storages;
 }

@@ -17,8 +17,11 @@ public class UserController {
 
     private final UserService userService;
 
+    //    @PostMapping("register")
+//    public void addUser(@RequestBody AppUserDTO user) {
+//    }
     @PostMapping("register")
-    public void addUser(@RequestBody AppUserDTO user) {
+    public void addUser(@RequestBody AppUser user) {
     }
 
     @PostMapping("login")
