@@ -35,22 +35,18 @@ class StorageServiceTest {
     @Test
     void testAddStorage() throws IOException, URISyntaxException {
         //GIVEN
-        String id = "your-id";
-        String description = "your-description";
-        int crtsOrg = 10;
-        int crtsNow = 20;
-        MultipartFile imageFile = new MockMultipartFile(
-                "image",
-                "crateGo_logo.png",
-                "image/png",
-                Files.readAllBytes(Paths.get(getClass().getResource("/images/crateGo_logo.png").toURI()))
-        );
-        Storage expectedStorage = new Storage();
-        when(storageRepo.save(any(Storage.class))).thenReturn(expectedStorage);
+        Storage storage = Storage.builder()
+                .id("storageId")
+                .description("storageDescription")
+                .cratesOrg(10)
+                .cratesNow(5)
+                .build();
+
+        when(storageRepo.save(storage)).thenReturn(storage);
         //WHEN
-        Storage createdStorage = storageService.addStorage(id, description, crtsOrg, crtsNow, imageFile);
+        Storage result = storageService.addStorage(storage);
         //THEN
-        verify(storageRepo).save(Mockito.any(Storage.class));
-        Assertions.assertEquals(expectedStorage, createdStorage);
+        verify(storageRepo).save(storage);
+        Assertions.assertEquals(storage, result);
     }
 }
