@@ -4,8 +4,7 @@ import {useNavigate} from "react-router-dom";
 
 export default function useUser(){
 
-    const [user, setUser] = useState<String>("")
-    const [id, setId] = useState<String>("")
+    const [user, setUser] = useState<string>("")
 
     const nav = useNavigate()
 
