@@ -20,13 +20,5 @@ public class StorageService {
         return storageRepo.findAll();
     }
 
-    public Storage addStorage(String id,String description, int crts_org, int crts_now, MultipartFile file) throws IOException {
-        Storage storage = new Storage();
-        storage.setId(id);
-        storage.setDescription(description);
-        storage.setCrts_org(crts_org);
-        storage.setCrts_now(crts_now);
-        storage.setImage(file.getBytes());
-        return storageRepo.save(storage);
-    }
+    public Storage addStorage(Storage storage){return storageRepo.save(storage);}
 }

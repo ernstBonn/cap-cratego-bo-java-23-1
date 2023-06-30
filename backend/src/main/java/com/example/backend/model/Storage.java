@@ -15,8 +15,6 @@ public class Storage {
 
     private String id;
     private String description;
-    private int crts_org;
-    private int crts_now;
-    private byte[] image;
-
+    private int cratesOrg;
+    private int cratesNow;
 }

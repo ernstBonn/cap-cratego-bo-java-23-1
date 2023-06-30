@@ -19,6 +19,5 @@ public class AppUser {
     private String id;
     private String username;
     private String password;
-    @DBRef
-    private List<Storage> storages;
+    private List<String> storages;
 }

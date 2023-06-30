@@ -22,16 +22,7 @@ public class StorageController {
         }
 
     @PostMapping("storage")
-    public ResponseEntity<Storage> addStorage(@RequestParam String id,
-                                            @RequestParam String description,
-                                            @RequestParam int crts_org,
-                                            @RequestParam int crts_now,
-                                            @RequestParam("image") MultipartFile file) {
-        try {
-            Storage createdStorage = storageService.addStorage(id,description, crts_org, crts_now, file);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdStorage);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public Storage addTStorage(@RequestBody Storage storage) {
+        return storageService.addStorage(storage);
     }
 }

@@ -18,8 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("register")
-    public String addUser(@RequestBody AppUserDTO user) {
-        return userService.addUser(user);
+    public void addUser(@RequestBody AppUserDTO user) {
     }
 
     @PostMapping("login")

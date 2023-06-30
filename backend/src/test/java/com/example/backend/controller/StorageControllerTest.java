@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
@@ -38,31 +39,28 @@ class StorageControllerTest {
     @DirtiesContext
     @WithMockUser(username = "user", password = "123")
     void testAddStorage() throws Exception {
-
-        InputStream imageStream = getClass().getResourceAsStream("/images/crateGo_logo.png");
-        String imageName = "crateGo_logo.png";
-        String imageContentType = "image/png";
-        MockMultipartFile imageFile = new MockMultipartFile("image", imageName, imageContentType, imageStream);
-
-        String id = "storageId";
-        String description = "storageDescription";
-        int crtsOrg = 20;
-        int crtsNow = 10;
-
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.multipart("/api/storage")
-                        .file(imageFile)
-                        .param("id", id)
-                        .param("description", description)
-                        .param("crts_org", String.valueOf(crtsOrg))
-                        .param("crts_now", String.valueOf(crtsNow))
-                        .with(csrf())
-                )
-                .andExpect(MockMvcResultMatchers.status().isCreated())
-                .andReturn();
-
-        Assertions.assertEquals(id, result.getRequest().getParameter("id"));
-        Assertions.assertEquals(description, result.getRequest().getParameter("description"));
-        Assertions.assertEquals(String.valueOf(crtsOrg), result.getRequest().getParameter("crts_org"));
-        Assertions.assertEquals(String.valueOf(crtsNow), result.getRequest().getParameter("crts_now"));
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/storage")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "id": "idString",
+                        "description": "descriptionString" ,
+                        "cratesOrg": 10,
+                        "cratesNow": 5
+                        }
+                        """
+                ).with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                            {
+                            "id": "idString",
+                            "description": "descriptionString" ,
+                            "cratesOrg": 10,
+                            "cratesNow": 5
+                            }
+                            """
+                ))
+                .andExpect(jsonPath("$.id").isNotEmpty());
     }
 }

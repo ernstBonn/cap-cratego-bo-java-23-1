@@ -28,7 +28,7 @@ public class UserService implements UserDetailsService {
         return new User(appUser.getUsername(), appUser.getPassword(), List.of());
     }
 
-    public String addUser(AppUserDTO user) {
+    public void addUser(AppUserDTO user) {
         if (userRepo.findAppUserByUsername(user.getUsername()).equals(user.getUsername())){
             throw new IllegalArgumentException("Username already taken");
         }
@@ -39,6 +39,5 @@ public class UserService implements UserDetailsService {
                 encoder.encode(user.getPassword()),
                 List.of());
         userRepo.save(realUser);
-        return realUser.getId();
     }
 }
