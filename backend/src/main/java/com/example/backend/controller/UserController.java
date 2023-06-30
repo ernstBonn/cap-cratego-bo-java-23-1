@@ -21,7 +21,8 @@ public class UserController {
 //    public void addUser(@RequestBody AppUserDTO user) {
 //    }
     @PostMapping("register")
-    public void addUser(@RequestBody AppUser user) {
+    public AppUserDTO addUser(@RequestBody AppUser user) {
+        return userService.addUser(user);
     }
 
     @PostMapping("login")
