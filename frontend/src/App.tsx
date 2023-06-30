@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import StorageGallery from "./components/gallerys/StorageGallery";
 import axios from "axios";
@@ -7,7 +6,6 @@ import {StorageModel} from "./components/models/StorageModel";
 import {Route, Routes} from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
-import loginPage from "./components/pages/LoginPage";
 import useUser from "./components/hooks/useUser";
 
 function App() {
