@@ -28,24 +28,12 @@ public class UserService implements UserDetailsService {
         return new User(appUser.getUsername(), appUser.getPassword(), List.of());
     }
 
-//    public void addUser(AppUserDTO user) {
-//        if (userRepo.findAppUserByUsername(user.getUsername()).equals(user.getUsername())){
-//            throw new IllegalArgumentException("Username already taken");
-//        }
-//        PasswordEncoder encoder = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
-//        AppUser realUser = new AppUser(
-//                setUUID.setUUID(),
-//                user.getUsername(),
-//                encoder.encode(user.getPassword()),
-//                List.of());
-//        userRepo.save(realUser);
-//    }
-
     public AppUserDTO addUser(AppUser user) {
         if (userRepo.findAppUserByUsername(user.getUsername()).equals(user.getUsername())){
             throw new IllegalArgumentException("Username already taken");
         }
         user.setPassword(encoder.encode(user.getPassword()));
+        user.setStorages(List.of());
         userRepo.insert(user);
         return new AppUserDTO(user.getId(), user.getUsername(), user.getStorages());
     }

@@ -14,10 +14,6 @@ public class UserController {
 
     private final UserService userService;
 
-    //    @PostMapping("register")
-//    public void addUser(@RequestBody AppUserDTO user) {
-//    }
-
     @PostMapping("register")
     public AppUserDTO addUser(@RequestBody AppUser user) {
         return userService.addUser(user);

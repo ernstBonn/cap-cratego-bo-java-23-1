@@ -19,7 +19,12 @@ public class StorageController {
         }
 
     @PostMapping("storage")
-    public Storage addTStorage(@RequestBody Storage storage) {
+    public Storage addStorage(@RequestBody Storage storage) {
         return storageService.addStorage(storage);
+    }
+
+    @GetMapping("storage")
+    public List<Storage> getUserStorages(){
+        return storageService.getUserStorages();
     }
 }

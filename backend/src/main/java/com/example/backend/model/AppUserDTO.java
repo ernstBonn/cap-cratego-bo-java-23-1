@@ -16,6 +16,5 @@ public class AppUserDTO {
 
     private String id;
     private String username;
-//    private String password;
-private List<String> storages;
+    private List<String> storages;
 }
