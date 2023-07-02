@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
 import useUser from "./components/hooks/useUser";
+import UserStorageGallery from "./components/gallerys/UserStorageGallery";
 
 function App() {
 
@@ -25,16 +26,11 @@ function App() {
 
     return (
         <div>
-            {/*<div className="header">*/}
-            {/*    <h1>CRATEGO</h1>*/}
-            {/*</div>*/}
-            {/*<div className="main">*/}
-            {/*    <StorageGallery storages={storages}/>*/}
-            {/*</div>*/}
             <Routes>
                 <Route path={"/"} element={<RegisterPage register={register}/>}/>
                 <Route path={"/login"} element={<LoginPage login={login}/>}/>
                 <Route path={"/api/storages"} element={<StorageGallery storages={storages}/>}/>
+                <Route path={"/me"} element={<UserStorageGallery/>}/>
             </Routes>
         </div>
     );

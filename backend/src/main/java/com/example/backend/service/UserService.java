@@ -4,6 +4,7 @@ import com.example.backend.model.AppUser;
 import com.example.backend.model.AppUserDTO;
 import com.example.backend.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,5 +37,13 @@ public class UserService implements UserDetailsService {
         user.setStorages(List.of());
         userRepo.insert(user);
         return new AppUserDTO(user.getId(), user.getUsername(), user.getStorages());
+    }
+
+    public List<AppUser> getUsers() {
+        return userRepo.findAll();
+    }
+
+    public String getMe() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
