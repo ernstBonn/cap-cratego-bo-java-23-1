@@ -4,8 +4,10 @@ import com.example.backend.model.AppUser;
 import com.example.backend.model.AppUserDTO;
 import com.example.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,8 +24,9 @@ public class UserController {
     }
 
     @GetMapping("me")
-    public String getMe(){
-        return userService.getMe();
+    public AppUserDTO getMe(){
+        AppUser user = userService.getMe().orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
+        return new AppUserDTO(user.getId(), user.getUsername(), user.getStorages());
     }
 
     @PostMapping("register")
@@ -35,6 +38,5 @@ public class UserController {
     public String login() {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
-
 
 }

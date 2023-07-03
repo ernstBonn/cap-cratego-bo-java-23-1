@@ -12,24 +12,29 @@ function UserStorageGallery() {
     const [user, setUser] = useState<AppUserModel>()
     const [storageIds, setStorageIds] = useState<String[]>([])
 
-    useEffect(getStorages, [])
+    useEffect(getStorages, [user])
     useEffect(getUser, [])
     useEffect(getUserName, [])
     useEffect(getUsers, [])
     useEffect(findUser, [])
 
     function getUser() {
+        let users: any[] = []
+        let username = ""
         axios.get("/api/users")
-            .then(response => setUsers(response.data))
-
-        axios.get("/api/me")
-            .then(response => setUserName(response.data))
-
-        users.map((current) => {
-            if(current.username === userName){
-                setUser(current)
-            }
-        })
+            .then(response => {
+                setUsers(response.data)
+                users = response.data
+            })
+            .then(() =>  axios.get("/api/me").then(response => {
+                setUserName(response.data)
+                username = response.data
+            }))
+            .then(() => users.map((current) => {
+                if (current.username === username) {
+                    setUser(current)
+                }
+            }))
     }
 
     function getUserName() {
