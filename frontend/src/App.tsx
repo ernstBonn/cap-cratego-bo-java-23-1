@@ -1,27 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import StorageGallery from "./components/gallerys/StorageGallery";
-import axios from "axios";
-import {StorageModel} from "./components/models/StorageModel";
 import {Route, Routes} from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
 import useUser from "./components/hooks/useUser";
 import UserStorageGallery from "./components/gallerys/UserStorageGallery";
+import useStorage from "./components/hooks/useStorage";
 
 function App() {
 
-    const [storages, setStorages] = useState<StorageModel[]>([])
-
-    function getStorages() {
-        axios.get("/api/storages")
-            .then(response =>
-                setStorages(response.data)
-            )
-    }
-
-    useEffect(getStorages, [])
-
+    const {storages} = useStorage()
     const {login, register} = useUser()
 
     return (

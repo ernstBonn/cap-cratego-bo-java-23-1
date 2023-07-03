@@ -12,11 +12,11 @@ function UserStorageGallery() {
     const [user, setUser] = useState<AppUserModel>()
     const [storageIds, setStorageIds] = useState<String[]>([])
 
-    // useEffect(getUserStorages, [])
+    useEffect(getStorages, [])
     useEffect(getUser, [])
     useEffect(getUserName, [])
     useEffect(getUsers, [])
-    // useEffect(findUser, [])
+    useEffect(findUser, [])
 
     function getUser() {
         axios.get("/api/users")
@@ -48,35 +48,28 @@ function UserStorageGallery() {
                 setUser(current)
             }
         })
+        console.log(user?.storages);
     }
 
-    // function getUserStorages() {
-    //     axios.get('/api/storage')
-    //         .then(response =>
-    //             setStorages(response.data))
-    // }
-    const storagesIds = user?.storages
+    function getStorages() {
+        axios.get("/api/storages")
+            .then(response => {
+                const filteredStorages = response.data.filter((storage: { id: string; }) => user?.storages.includes(storage.id));
+                setStorages(filteredStorages);
+                console.log(storages);
+            });
+    }
+
     return (
         <>
             <div>
                 {user?.storages}
+                {storages.map(current => <UserStorageCard storage={current}/>)}
             </div>
             <div>
                 {userName}
             </div>
-            <div>
-
-            </div>
         </>
-
-        // <div>
-        //     <h1>User Storages</h1>
-        //     {storages.map(storage => (
-        //         <div>
-        //             <p>{storage.description}</p>
-        //         </div>
-        //     ))}
-        // </div>
     );
 }
 
