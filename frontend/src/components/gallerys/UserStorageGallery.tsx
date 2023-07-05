@@ -35,6 +35,7 @@ function UserStorageGallery() {
                 {userName}
                 {storages.map(current => <UserStorageCard storage={current}/>)}
             </div>
+            <button>ADD STORAGE</button>
         </>
     );
 }

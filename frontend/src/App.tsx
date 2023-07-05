@@ -7,6 +7,7 @@ import LoginPage from "./components/pages/LoginPage";
 import useUser from "./components/hooks/useUser";
 import UserStorageGallery from "./components/gallerys/UserStorageGallery";
 import useStorage from "./components/hooks/useStorage";
+import WelcomePage from "./components/pages/WelcomePage";
 
 function App() {
 
@@ -18,8 +19,9 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<RegisterPage register={register}/>}/>
                 <Route path={"/login"} element={<LoginPage login={login}/>}/>
-                <Route path={"/api/storages"} element={<StorageGallery storages={storages}/>}/>
+                <Route path={"/storages"} element={<StorageGallery storages={storages}/>}/>
                 <Route path={"/me"} element={<UserStorageGallery/>}/>
+                <Route path={"/welcome"} element={<WelcomePage/>}/>
             </Routes>
         </div>
     );
