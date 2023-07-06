@@ -8,6 +8,7 @@ import useUser from "./components/hooks/useUser";
 import UserStorageGallery from "./components/gallerys/UserStorageGallery";
 import useStorage from "./components/hooks/useStorage";
 import WelcomePage from "./components/pages/WelcomePage";
+import AddStoragePage from "./components/pages/AddStoragePage";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
                 <Route path={"/storages"} element={<StorageGallery storages={storages}/>}/>
                 <Route path={"/me"} element={<UserStorageGallery/>}/>
                 <Route path={"/welcome"} element={<WelcomePage/>}/>
+                <Route path={"/add"} element={<AddStoragePage/>}/>
             </Routes>
         </div>
     );

@@ -3,6 +3,7 @@ import axios from "axios";
 import {StorageModel} from "../models/StorageModel";
 import {AppUserModel} from "../models/AppUser";
 import UserStorageCard from "../cards/UserStorageCard";
+import {useNavigate} from "react-router-dom";
 
 function UserStorageGallery() {
 
@@ -10,6 +11,7 @@ function UserStorageGallery() {
     const [userName, setUserName] = useState<String>("")
 
     useEffect(getUser, [])
+    const nav = useNavigate()
 
     function getUser() {
         let user: AppUserModel
@@ -29,13 +31,17 @@ function UserStorageGallery() {
                 }))
     }
 
+    function goToAddStorage(){
+        nav("/add")
+    }
+
     return (
         <>
             <div>
                 {userName}
                 {storages.map(current => <UserStorageCard storage={current}/>)}
             </div>
-            <button>ADD STORAGE</button>
+            <button onClick={goToAddStorage}>ADD STORAGE</button>
         </>
     );
 }
