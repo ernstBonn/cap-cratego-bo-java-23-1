@@ -2,10 +2,6 @@ import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
-// type Props = {
-//     addStorage: (id: string, description: string, crates: number) => Promise<void>
-// }
-
 function AddStoragePage() {
 
     const [id, setId] = useState<string>("")
