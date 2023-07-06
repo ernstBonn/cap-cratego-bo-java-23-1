@@ -73,7 +73,7 @@ mockMvc.perform(MockMvcRequestBuilders.post("/api/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                                 {
-                                "name": "user1",
+                                "username": "user1",
                                 "password": "123"
                                 }
                                 """
