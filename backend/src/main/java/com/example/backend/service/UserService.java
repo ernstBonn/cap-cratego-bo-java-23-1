@@ -40,10 +40,6 @@ public class UserService implements UserDetailsService {
         return new AppUserDTO(user.getId(), user.getUsername(), user.getStorages());
     }
 
-    public List<AppUser> getUsers() {
-        return userRepo.findAll();
-    }
-
     public Optional<AppUser> getMe() {
         return userRepo.findAppUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }

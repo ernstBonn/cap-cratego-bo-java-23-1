@@ -18,11 +18,6 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("users")
-    public List<AppUser> getUsers(){
-        return userService.getUsers();
-    }
-
     @GetMapping("me")
     public AppUserDTO getMe(){
         AppUser user = userService.getMe().orElseThrow(()-> new ResponseStatusException(HttpStatus.UNAUTHORIZED));
