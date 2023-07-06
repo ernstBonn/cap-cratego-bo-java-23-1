@@ -46,7 +46,4 @@ class UserServiceTest {
         assertEquals(userName, result.getUsername());
         assertEquals(password, result.getPassword());
     }
-
-
-
 }
