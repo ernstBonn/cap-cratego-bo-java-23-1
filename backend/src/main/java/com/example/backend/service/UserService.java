@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,11 +40,7 @@ public class UserService implements UserDetailsService {
         return new AppUserDTO(user.getId(), user.getUsername(), user.getStorages());
     }
 
-    public List<AppUser> getUsers() {
-        return userRepo.findAll();
-    }
-
-    public String getMe() {
-        return SecurityContextHolder.getContext().getAuthentication().getName();
+    public Optional<AppUser> getMe() {
+        return userRepo.findAppUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }

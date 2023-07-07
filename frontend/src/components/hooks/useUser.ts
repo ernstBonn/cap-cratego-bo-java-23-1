@@ -11,14 +11,14 @@ export default function useUser(){
     function login(username: string, password: string){
         return axios.post("/api/login", undefined, {auth:{username, password}})
             .then((r) => setUser(r.data))
-            .then(() => nav("/api/storages"))
+            .then(() => nav("/welcome"))
             .catch((e) => console.log(e.message))
     }
 
     function register(username: string, password: string){
         return axios.post("/api/register",{username, password})
             .then((r) => setUser(r.data))
-            .then(() => nav("/api/storages"))
+            .then(() => nav("/storages"))
             .catch((e) => console.log(e.message))
     }
 

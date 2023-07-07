@@ -17,4 +17,5 @@ public class Storage {
     private String description;
     private int cratesOrg;
     private int cratesNow;
+
 }
