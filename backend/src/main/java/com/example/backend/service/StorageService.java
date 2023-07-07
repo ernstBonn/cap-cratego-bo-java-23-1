@@ -1,7 +1,6 @@
 package com.example.backend.service;
 
 import com.example.backend.model.AppUser;
-import com.example.backend.model.AppUserDTO;
 import com.example.backend.model.Storage;
 import com.example.backend.repo.StorageRepo;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -32,5 +32,10 @@ public class StorageService {
         List<Storage> storageList = storageRepo.findAllById(storages);
 
         return storageList;
+    }
+
+    public Optional<Storage> getStorageById(String storageId) {
+        Optional<Storage> storage = storageRepo.findById(storageId);
+        return storage;
     }
 }
