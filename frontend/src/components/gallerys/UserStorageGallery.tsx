@@ -13,6 +13,11 @@ function UserStorageGallery() {
     useEffect(getUser, [])
     const nav = useNavigate()
 
+    function logout(){
+        axios.get("/api/logout")
+            .then(() => nav("/login"))
+    }
+
     function getUser() {
         let user: AppUserModel
         axios.get("/api/me")
@@ -42,6 +47,7 @@ function UserStorageGallery() {
                 {storages.map(current => <UserStorageCard storage={current}/>)}
             </div>
             <button onClick={goToAddStorage}>ADD STORAGE</button>
+            <button onClick={logout}>logout</button>
         </>
     );
 }

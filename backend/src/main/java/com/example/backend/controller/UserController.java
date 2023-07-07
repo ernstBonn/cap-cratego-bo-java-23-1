@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.model.AppUser;
 import com.example.backend.model.AppUserDTO;
 import com.example.backend.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,5 +38,12 @@ public class UserController {
     @PutMapping("user/{id}")
     public AppUser updateUser(@PathVariable("id") String id, @RequestBody AppUser user) {
         return userService.updateUser(id, user);
+    }
+
+    @GetMapping("/logout")
+    String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        SecurityContextHolder.clearContext();
+        return "Logged out";
     }
 }
