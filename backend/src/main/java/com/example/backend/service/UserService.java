@@ -43,4 +43,17 @@ public class UserService implements UserDetailsService {
     public Optional<AppUser> getMe() {
         return userRepo.findAppUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
+
+    public AppUser updateUser(String id, AppUser updatedUser) {
+        AppUser user = userRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+
+        // Update the user properties
+        user.setUsername(updatedUser.getUsername());
+        user.setPassword(updatedUser.getPassword());
+        user.setStorages(updatedUser.getStorages());
+
+        // Save the updated user
+        return userRepo.save(user);
+    }
 }

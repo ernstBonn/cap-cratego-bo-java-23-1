@@ -34,4 +34,8 @@ public class UserController {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
+    @PutMapping("user/{id}")
+    public AppUser updateUser(@PathVariable("id") String id, @RequestBody AppUser user) {
+        return userService.updateUser(id, user);
+    }
 }
