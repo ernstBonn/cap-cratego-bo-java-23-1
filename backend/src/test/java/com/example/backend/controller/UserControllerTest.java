@@ -1,5 +1,7 @@
 package com.example.backend.controller;
 
+import com.example.backend.model.AppUser;
+import com.example.backend.repo.UserRepo;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.List;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -21,6 +25,9 @@ class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private UserRepo userRepo;
 
     @Test
     @DirtiesContext
@@ -85,17 +92,37 @@ mockMvc.perform(MockMvcRequestBuilders.post("/api/login")
                 .andExpect(jsonPath("$.id").isNotEmpty());
     }
 
-//    @Test
-//    @DirtiesContext
-//    @WithMockUser(username = "user1", password = "123")
-//    void testUpdateUser() throws Exception {
-//
-//        String userId = "userId";
-//        AppUser updatedUser = new AppUser();
-//        updatedUser.setStorages();
-//
-//        mockMvc.perform(MockMvcRequestBuilders.put("/api/user/{id}", userId))
-//    }
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user1", password = "123")
+    void testUpdateUser() throws Exception {
+
+        AppUser testUser = userRepo.save((new AppUser("userId","userName","password", List.of())));
+        String userId = testUser.getId();
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/user/{id}", userId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "id": "userId",
+                        "username": "userName",
+                        "password": "password",
+                        "storages": []
+                        }
+                        """).with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                        "id": "userId",
+                        "username": "userName",
+                        "password": "password",
+                        "storages": []
+                        }
+                        """
+                ))
+                .andExpect(jsonPath("$.id").isNotEmpty());
+
+    }
 
     @Test
     @DirtiesContext
