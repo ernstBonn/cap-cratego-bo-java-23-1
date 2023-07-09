@@ -29,8 +29,7 @@ function AddStoragePage() {
         const storageId = id;
         let user: AppUserModel;
         e.preventDefault();
-        axios
-            .post("api/storage", {
+        axios.post("api/storage", {
                 id: id,
                 description: description,
                 cratesOrg: cratesOrg,

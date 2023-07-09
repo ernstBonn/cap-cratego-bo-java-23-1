@@ -1,4 +1,5 @@
 package com.example.backend.controller;
+import com.example.backend.model.AppUser;
 import com.example.backend.model.Storage;
 import com.example.backend.repo.StorageRepo;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.io.InputStream;
+import java.util.List;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -87,5 +89,37 @@ class StorageControllerTest {
                             """
                 ))
                 .andExpect(jsonPath("$.id").isNotEmpty());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user1", password = "123")
+    void testUpdateStorage() throws Exception {
+
+        Storage testStorage = storageRepo.save((new Storage("storageId","description",100, 50)));
+        String storageId = testStorage.getId();
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/storage/{id}", storageId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                        {
+                        "id": "storageId",
+                        "description": "description",
+                        "cratesOrg": 100,
+                        "cratesNow": 50
+                        }
+                        """).with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                        "id": "storageId",
+                        "description": "description",
+                        "cratesOrg": 100,
+                        "cratesNow": 50
+                        }
+                        """
+                ))
+                .andExpect(jsonPath("$.id").isNotEmpty());
+
     }
 }

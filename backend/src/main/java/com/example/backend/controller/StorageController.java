@@ -33,4 +33,9 @@ public class StorageController {
     public Optional<Storage> getStorageById(@PathVariable String storageId){
         return storageService.getStorageById(storageId);
     }
+
+    @PutMapping("/storage/{id}")
+    public Storage updateStorage(@PathVariable("id") String id, @RequestBody Storage storage){
+        return storageService.updateStorage(id, storage);
+    }
 }

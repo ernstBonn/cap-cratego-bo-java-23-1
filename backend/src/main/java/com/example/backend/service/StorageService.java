@@ -37,4 +37,13 @@ public class StorageService {
     public Optional<Storage> getStorageById(String storageId) {
         return storageRepo.findById(storageId);
     }
+
+    public Storage updateStorage(String id, Storage storage) {
+        Storage updatedStorage = storageRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Storage not found with ID: " + id));
+
+        updatedStorage.setCratesNow(storage.getCratesNow());
+
+        return storageRepo.save(updatedStorage);
+    }
 }
