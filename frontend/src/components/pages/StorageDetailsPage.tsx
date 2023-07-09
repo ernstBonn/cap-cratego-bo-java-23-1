@@ -16,12 +16,22 @@ function StorageDetailsPage() {
             .catch(error => console.error(error))
     }
 
+    function addCrate(){
+
+    }
+
+    function removeCrate(){
+
+    }
+
     useEffect(getStorageById,[])
 
     return (
         <>
             <div>{storage.description}</div>
             <div>{storage.cratesNow} / {storage.cratesOrg} crts</div>
+            <button onClick={addCrate}>-</button>
+            <button onClick={removeCrate}>+</button>
         </>
     );
 }
