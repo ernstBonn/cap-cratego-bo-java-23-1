@@ -35,7 +35,6 @@ public class StorageService {
     }
 
     public Optional<Storage> getStorageById(String storageId) {
-        Optional<Storage> storage = storageRepo.findById(storageId);
-        return storage;
+        return storageRepo.findById(storageId);
     }
 }
