@@ -1,6 +1,6 @@
 package com.example.backend.controller;
-import com.example.backend.service.StorageService;
-import org.junit.jupiter.api.Assertions;
+import com.example.backend.model.Storage;
+import com.example.backend.repo.StorageRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,6 +25,9 @@ class StorageControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
+    @Autowired
+    StorageRepo storageRepo;
 
     @Test
     @DirtiesContext
@@ -58,6 +61,28 @@ class StorageControllerTest {
                             "description": "descriptionString" ,
                             "cratesOrg": 10,
                             "cratesNow": 5
+                            }
+                            """
+                ))
+                .andExpect(jsonPath("$.id").isNotEmpty());
+    }
+
+    @Test
+    @DirtiesContext
+    @WithMockUser(username = "user", password = "123")
+    void testGetStorageById() throws Exception {
+
+        storageRepo.save(new Storage("100", "description", 100, 50));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/storage/100"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                            {
+                            "id": "100",
+                            "description": "description",
+                            "cratesOrg": 100,
+                            "cratesNow": 50
                             }
                             """
                 ))

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/")
@@ -26,5 +27,10 @@ public class StorageController {
     @GetMapping("storage")
     public List<Storage> getUserStorages(){
         return storageService.getUserStorages();
+    }
+
+    @GetMapping("/storage/{storageId}")
+    public Optional<Storage> getStorageById(@PathVariable String storageId){
+        return storageService.getStorageById(storageId);
     }
 }
