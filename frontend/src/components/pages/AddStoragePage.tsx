@@ -57,7 +57,7 @@ function AddStoragePage() {
                 <input placeholder={"id"} onChange={onChangeHandlerId}/>
                 <input placeholder={"description"} onChange={onChangeHandlerDescription}/>
                 <input placeholder={"crates"} onChange={onChangeHandlerCratesOrg}/>
-                <button>SUBMIT</button>
+                <button className={"button"}>SUBMIT</button>
             </form>
         </div>
     );

@@ -17,7 +17,7 @@ function UserStorageCard(props: Props) {
         <div>
             <div className="description">{props.storage.description}</div>
             <div className="crts_now">{props.storage.cratesNow} / {props.storage.cratesOrg} crts</div>
-            <button onClick={storageDetails}>Details</button>
+            <button className={"button"} onClick={storageDetails}>Details</button>
         </div>
     );
 }

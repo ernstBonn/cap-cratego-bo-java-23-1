@@ -11,7 +11,7 @@ function WelcomePage() {
 
     return (
         <div>
-            <button onClick={goToStorages}>STORAGES</button>
+            <button className={"button"} onClick={goToStorages}>STORAGES</button>
         </div>
     );
 }

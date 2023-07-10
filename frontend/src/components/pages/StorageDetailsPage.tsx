@@ -47,8 +47,8 @@ function StorageDetailsPage() {
         <>
             <div>{storage.description}</div>
             <div>{storage.cratesNow} / {storage.cratesOrg} crts</div>
-            <button onClick={removeCrate}>-</button>
-            <button onClick={addCrate}>+</button>
+            <button className={"button"} onClick={removeCrate}>-</button>
+            <button className={"button"} onClick={addCrate}>+</button>
         </>
     );
 }

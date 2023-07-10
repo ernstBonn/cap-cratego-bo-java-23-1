@@ -120,6 +120,5 @@ class StorageControllerTest {
                         """
                 ))
                 .andExpect(jsonPath("$.id").isNotEmpty());
-
     }
 }
