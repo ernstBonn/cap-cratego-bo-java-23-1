@@ -18,7 +18,7 @@ export default function useUser(){
     function register(username: string, password: string){
         return axios.post("/api/register",{username, password})
             .then((r) => setUser(r.data))
-            .then(() => nav("/storages"))
+            .then(() => nav("/"))
             .catch((e) => console.log(e.message))
     }
 

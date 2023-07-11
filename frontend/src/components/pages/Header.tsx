@@ -8,7 +8,7 @@ function Header() {
 
     function logout(){
         axios.get("/api/logout")
-            .then(() => navigate("/login"))
+            .then(() => navigate("/"))
     }
 
     const handleGoBack = () => {
