@@ -9,7 +9,6 @@ function StorageCard(props: Props) {
                 <div className="card">
                     <div className="description">{props.storage.description}</div>
                     <div className="crts_now">{props.storage.cratesNow} / {props.storage.cratesOrg} crts</div>
-                    <button className="details-button">Details</button>
                 </div>
     );
 }

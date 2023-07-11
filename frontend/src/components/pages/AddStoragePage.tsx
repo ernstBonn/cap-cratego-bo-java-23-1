@@ -29,8 +29,7 @@ function AddStoragePage() {
         const storageId = id;
         let user: AppUserModel;
         e.preventDefault();
-        axios
-            .post("api/storage", {
+        axios.post("api/storage", {
                 id: id,
                 description: description,
                 cratesOrg: cratesOrg,
@@ -58,7 +57,7 @@ function AddStoragePage() {
                 <input placeholder={"id"} onChange={onChangeHandlerId}/>
                 <input placeholder={"description"} onChange={onChangeHandlerDescription}/>
                 <input placeholder={"crates"} onChange={onChangeHandlerCratesOrg}/>
-                <button>SUBMIT</button>
+                <button className={"button"}>SUBMIT</button>
             </form>
         </div>
     );
