@@ -21,10 +21,10 @@ function App() {
     return (
         <>
             <header><Header/></header>
-            <div className={"body"}>
+            <div className={"main"}>
                 <Routes>
-                    <Route path={"/"} element={<RegisterPage register={register}/>}/>
-                    <Route path={"/login"} element={<LoginPage login={login}/>}/>
+                    <Route path={"/register"} element={<RegisterPage register={register}/>}/>
+                    <Route path={"/"} element={<LoginPage login={login}/>}/>
                     <Route path={"/storages"} element={<StorageGallery storages={storages}/>}/>
                     <Route path={"/me"} element={<UserStorageGallery/>}/>
                     <Route path={"/welcome"} element={<WelcomePage/>}/>

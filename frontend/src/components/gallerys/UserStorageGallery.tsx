@@ -43,7 +43,7 @@ function UserStorageGallery() {
             <div>
                 {storages.map(current => <UserStorageCard storage={current}/>)}
             </div>
-            <button className={"button"} onClick={goToAddStorage}>ADD STORAGE</button>
+            <button id={"addStorageButton"} onClick={goToAddStorage}>ADD STORAGE</button>
         </>
     );
 }

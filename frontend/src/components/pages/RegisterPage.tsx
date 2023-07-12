@@ -28,7 +28,7 @@ function RegisterPage(props: Props) {
             <form onSubmit={registerOnSubmit}>
                 <input placeholder={"name"} onChange={onChangeHandlerName}/>
                 <input type={"password"} placeholder={"password"} onChange={onChangeHandlerPassword}/>
-                <button>SUBMIT</button>
+                <button className={"button"}>SUBMIT</button>
             </form>
         </div>
     );

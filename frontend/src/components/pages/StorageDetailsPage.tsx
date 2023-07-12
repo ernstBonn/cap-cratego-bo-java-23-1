@@ -45,8 +45,8 @@ function StorageDetailsPage() {
 
     return (
         <>
-            <div>{storage.description}</div>
-            <div>{storage.cratesNow} / {storage.cratesOrg} crts</div>
+            <div className={"description"}>{storage.description}</div>
+            <div className={"description"}>{storage.cratesNow} / {storage.cratesOrg} crts</div>
             <button className={"button"} onClick={removeCrate}>-</button>
             <button className={"button"} onClick={addCrate}>+</button>
         </>
