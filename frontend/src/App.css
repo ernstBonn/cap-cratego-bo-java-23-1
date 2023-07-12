@@ -59,9 +59,9 @@ h1 {
 }
 
 .userName {
-  color: #EF8354;
-  font-size: 4vh;
-  margin: 2vh;
+    color: #EF8354;
+    font-size: 4vh;
+    margin: 2vh;
 }
 
 input {
@@ -75,6 +75,57 @@ input {
 
 @media (max-width: 768px) {
     input {
+        font-size: 0.8rem;
+    }
+}
+
+.welcomeButton {
+
+    padding: 2.5rem 5rem;
+    font-size: 1.7rem;
+    border-radius: 25px;
+    border: none;
+    background-color: #EF8354;
+    margin: 5vh;
+}
+
+@media (max-width: 768px) {
+    .welcomeButton {
+        font-size: 0.8rem;
+    }
+}
+
+.description {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.crts_now {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .description {
+        font-size: 0.8rem;
+    }
+
+    .crts_now {
+        font-size: 1rem;
+    }
+}
+
+#addStorageButton {
+    margin: 5rem;
+    padding: 2.5rem 5rem;
+    font-size: 1.7rem;
+    border-radius: 25px;
+    border: none;
+    background-color: #EF8354;
+}
+
+@media (max-width: 768px) {
+    .addStorageButton {
         font-size: 0.8rem;
     }
 }
