@@ -11,6 +11,10 @@
     border-top: none;
 }
 
+h1 {
+    padding: 2vh;
+}
+
 .footer {
     display: flex;
     background-color: #EF8354;
@@ -35,12 +39,18 @@
 }
 
 .button {
-    grid-area: details-button;
+    margin-right: 0.5rem;
+    padding: 2.5rem 5rem;
+    font-size: 1.7rem;
     border-radius: 25px;
     border: none;
     background-color: #EF8354;
-    width: 25vw;
-    margin: 5vw;
+}
+
+@media (max-width: 768px) {
+    .header-button {
+        font-size: 0.8rem;
+    }
 }
 
 .logo {
@@ -55,11 +65,16 @@
 }
 
 input {
-    width: 90%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 0.5vh solid #BFC0C0;
-    border-radius: 4px;
-    box-sizing: border-box;
+    width: 80%;
+    padding: 2rem;
+    font-size: 3rem;
+    margin-bottom: 5rem;
+    border-radius: 5px;
+    border: 1px solid #BFC0C0;
+}
+
+@media (max-width: 768px) {
+    input {
+        font-size: 0.8rem;
+    }
 }
